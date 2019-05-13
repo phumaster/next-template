@@ -3,6 +3,7 @@ node_modules/
 .vscode/
 .env
 .idea
+.next
 
 npm-shrinkwrap.json
 package-lock.json

@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/styles.chunk.css","sources":["webpack:///./containers/Home/home.scss"],"sourcesContent":[".bg {\n  background: green; }\n\n.txt {\n  color: white; }\n"],"mappings":"AAAA;AACA;AACA;AACA;AACA;;;","sourceRoot":""}
