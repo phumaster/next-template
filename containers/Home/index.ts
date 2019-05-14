@@ -9,9 +9,12 @@ import Home from './Home'
 /**
  * Constants
  */
-const GET_HOME_DATA = 'GET_HOME_DATA'
-const GET_HOME_DATA_SUCCESS = 'GET_HOME_DATA_SUCCESS'
-const GET_HOME_DATA_FAILED = 'GET_HOME_DATA_FAILED'
+
+enum GetHomeDataRequestTypes {
+  REQUEST = 'GET_HOME_DATA',
+  SUCCESS = 'GET_HOME_DATA_SUCCESS',
+  FAILED = 'GET_HOME_DATA_FAILED'
+}
 
 /**
  * Types
@@ -34,16 +37,16 @@ export interface HomeState {
 }
 
 interface GetHomeDataAction {
-  type: typeof GET_HOME_DATA
+  type: typeof GetHomeDataRequestTypes.REQUEST
 }
 
 interface GetHomeDataSuccess {
-  type: typeof GET_HOME_DATA_SUCCESS
+  type: typeof GetHomeDataRequestTypes.SUCCESS
   data: User[] | any
 }
 
 interface GetHomeDataFailed {
-  type: typeof GET_HOME_DATA_FAILED
+  type: typeof GetHomeDataRequestTypes.FAILED
   error: any
 }
 
@@ -51,20 +54,20 @@ type HomeActionTypes = GetHomeDataAction | GetHomeDataSuccess | GetHomeDataFaile
 
 function getHomeDataRequest(): HomeActionTypes {
   return {
-    type: GET_HOME_DATA
+    type: GetHomeDataRequestTypes.REQUEST
   }
 }
 
 function getHomeDataSuccess(data: User[] | any): HomeActionTypes {
   return {
-    type: GET_HOME_DATA_SUCCESS,
+    type: GetHomeDataRequestTypes.SUCCESS,
     data
   }
 }
 
 function getHomeDataFailed(error: any): HomeActionTypes {
   return {
-    type: GET_HOME_DATA_FAILED,
+    type: GetHomeDataRequestTypes.FAILED,
     error
   }
 }
@@ -93,19 +96,19 @@ const initialState: HomeState = {
 
 export const reducer = (state = initialState, action: HomeActionTypes): HomeState => {
   switch (action.type) {
-    case GET_HOME_DATA:
+    case GetHomeDataRequestTypes.REQUEST:
       return {
         ...state,
         fetching: true,
       };
-    case GET_HOME_DATA_SUCCESS:
+    case GetHomeDataRequestTypes.SUCCESS:
       return {
         ...state,
         fetching: false,
         error: false,
         data: action.data,
       };
-    case GET_HOME_DATA_FAILED:
+    case GetHomeDataRequestTypes.FAILED:
       return {
         ...state,
         fetching: false,
