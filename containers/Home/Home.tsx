@@ -1,15 +1,17 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { Link, Router } from '@/routes';
-import routeNames from '@/config/routeNames';
-import { isServer } from '@/utils/helper';
-import { actions } from './index';
-import styles from './home.scss';
+import routeNames from '@/config/routeNames'
+import { Link, Router } from '@/routes'
+import { StoreTypes } from '@/base/store'
+import { isServer } from '@/utils/helper'
+import { getHomeData, HomeState } from './index'
 
-function Home({ fetching, data, error }) {
-  const { results } = data || {};
-  const [user] = results || [];
+import styles from './home.scss'
+
+function Home({ fetching, data, error }: HomeState) {
+  const { results = null } = data || {};
+  const [user = null] = results || [];
   const homeClasses: any = classNames(styles.bg, styles.txt);
   const navigateToArticle: any = () => Router.pushRoute(routeNames.HOME, {id: 456}, {shallow: true});
   // shallow route is not running getInitialProps of this page
@@ -28,15 +30,13 @@ function Home({ fetching, data, error }) {
   );
 }
 
-Home.getInitialProps = async ({ reduxStore }) => {
+Home.getInitialProps = async ({ reduxStore }: {reduxStore: StoreTypes}) => {
   if (isServer()) {
-    await reduxStore.dispatch(actions.getHomeData());
+    await reduxStore.dispatch(getHomeData());
   } else {
-    reduxStore.dispatch(actions.getHomeData());
+    reduxStore.dispatch(getHomeData());
   }
-  return {
-    name: 'phu',
-  };
-};
+  return {}
+}
 
 export default Home;

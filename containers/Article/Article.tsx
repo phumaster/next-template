@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { withRouter } from 'next/router';
 
-import configs from '@/config';
-import { Link } from '@/routes';
-import routeNames from '@/config/routeNames';
-import styles from './article.scss';
+import configs from '@/config'
+import { Link } from '@/routes'
+import routeNames from '@/config/routeNames'
+import * as styles from './article.scss'
 
 interface Props {
 
 }
 
 class Article extends React.Component<Props, {}> {
-  static getInitialProps = ({ query }) => {
+  static getInitialProps = ({ query }: any) => {
     console.log(2, query);
     console.log('isServer: ', typeof window === 'undefined');
     return {};
