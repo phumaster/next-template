@@ -16,6 +16,7 @@
     "sourceMap": true,
     "strict": true,
     "target": "esnext",
+    "esModuleInterop": true,
     "paths": {
       "@/*": ["./*"]
     }
