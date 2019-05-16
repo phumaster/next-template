@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
 class Error extends React.Component {
   static getInitialProps({ res, err }) {
     const statusCode = res ? res.statusCode : err ? err.statusCode : null;
-    return { statusCode };
+    return { statusCode }
   }
 
   render() {
@@ -17,4 +17,4 @@ class Error extends React.Component {
   }
 }
 
-export default Error;
+export default Error
